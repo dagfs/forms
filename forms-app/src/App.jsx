@@ -1,6 +1,6 @@
 import React from "react";
 import { compose, tokens } from "classy-ui";
-import { PrimaryButton } from "@dagfs/design-system/react/PrimaryButton";
+import { PrimaryButton } from "../ds/react/PrimaryButton";
 
 function App() {
   return (
