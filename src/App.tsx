@@ -7,9 +7,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/create-form">
-          <CreateForm />
-        </Route>
+        <Route path="/create-form/:formIndex" component={CreateForm}></Route>
         <Route default>
           <Home />
         </Route>

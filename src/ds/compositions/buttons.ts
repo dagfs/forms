@@ -4,7 +4,8 @@ export const baseButton = (disabled: Boolean) =>
   compose(
     tokens.backgroundColor.PRIMARY,
     tokens.padding.SPACING_2,
-    tokens.borderStyle.SOLID
+    tokens.borderStyle.SOLID,
+    tokens.display.BLOCK
   );
 
 export const primaryButton = (disabled: Boolean) =>

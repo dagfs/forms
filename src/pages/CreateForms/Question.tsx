@@ -36,10 +36,16 @@ export const Question = ({
       <Options
         selected={question.type}
         name="Question type"
-        options={[QuestionType.Text, QuestionType.MultiSelect]}
+        options={[
+          QuestionType.Text,
+          QuestionType.Number,
+          QuestionType.Radiobuttons,
+          QuestionType.Checkboxes,
+          QuestionType.Dropdown
+        ]}
         onChange={typeChange}
       />
-      {question.type === QuestionType.MultiSelect && (
+      {questionsHasOptions(question) && (
         <QuestionOptions setOptions={setOptions} options={question.options} />
       )}
     </Card>
@@ -86,9 +92,26 @@ export interface Question {
   options: string[];
 }
 
-export type QuestionType = 'text' | 'multi';
+export type QuestionType =
+  | 'Text'
+  | 'Number'
+  | 'Radiobuttons'
+  | 'Checkboxes'
+  | 'Dropdown';
 
 export const QuestionType = {
   Text: 'Text' as QuestionType,
-  MultiSelect: 'Multi Select' as QuestionType
+  Number: 'Number' as QuestionType,
+  Radiobuttons: 'Radiobuttons' as QuestionType,
+  Checkboxes: 'Checkboxes' as QuestionType,
+  Dropdown: 'Dropdown' as QuestionType
+};
+
+const questionsHasOptions = (question: Question) => {
+  const type = question.type;
+  return (
+    type === QuestionType.Dropdown ||
+    type === QuestionType.Radiobuttons ||
+    type === QuestionType.Checkboxes
+  );
 };
