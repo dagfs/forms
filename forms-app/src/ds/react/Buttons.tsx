@@ -13,7 +13,22 @@ export const LinkButton = ({ children, disabled, to }: LinkButtonProps) => (
   </Link>
 );
 
-export type PrimaryButtonProps = { children: ReactChildren; disabled: boolean };
-export const PrimaryButton = ({ children, disabled }: PrimaryButtonProps) => (
-  <button className={primaryButton(disabled)}>{children}</button>
-);
+export type PrimaryButtonProps = {
+  children: string | ReactChildren;
+  disabled?: boolean;
+  onClick: Function;
+};
+export const PrimaryButton = ({
+  children,
+  disabled,
+  onClick
+}: PrimaryButtonProps) => {
+  const click = () => {
+    onClick();
+  };
+  return (
+    <button type="button" onClick={click} className={primaryButton(disabled)}>
+      {children}
+    </button>
+  );
+};
