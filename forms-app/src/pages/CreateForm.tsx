@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { TextInput } from "../ds/react/FormElements";
+import React, { useState } from 'react';
+import { TextInput } from '../ds/react/FormElements';
 
-const CreateForm = ({}) => {
-  const [formName, setFormName] = useState("Default");
+const CreateForm = () => {
+  const [formName, setFormName] = useState('Default');
   return (
     <div>
       <h2>{formName}</h2>

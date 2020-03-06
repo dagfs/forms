@@ -1,14 +1,14 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.jsx",
-  devtool: "inline-source-map",
+  mode: 'development',
+  entry: './src/index.tsx',
+  devtool: 'inline-source-map',
   watch: true,
   devServer: {
-    contentBase: "./dist",
+    contentBase: './dist',
     // open: true,
     compress: true,
     port: 9000
@@ -16,29 +16,29 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "src/index.html"
+      template: 'src/index.html'
     })
   ],
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts|jsx|tsx)$/,
         exclude: /node_modules\/(?!@bekk\/design-system)/, // <- todo replace with your library
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            plugins: ["classy-ui/plugin"],
-            presets: ["@babel/react"]
+            plugins: ['classy-ui/plugin'],
+            presets: ['@babel/react', '@babel/preset-typescript']
           }
         }
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: ['.js', '.ts', '.jsx', '.tsx']
   },
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist")
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
   }
 };

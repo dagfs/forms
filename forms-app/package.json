@@ -2,21 +2,13 @@
   "name": "design-system-test-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bekk/design-system-test-app.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bekk/design-system-test-app/issues"
-  },
-  "homepage": "https://github.com/bekk/design-system-test-app#readme",
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
