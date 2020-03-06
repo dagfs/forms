@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.8.3",
     "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "classy-ui": "^9.0.0",

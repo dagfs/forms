@@ -25,7 +25,6 @@ export const Question = ({
         value={question.name}
         onChange={nameChange}
         validation={(value: string): string => {
-          console.log('validationg');
           return value ? '' : 'Field required';
         }}
       />
