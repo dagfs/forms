@@ -1,6 +1,7 @@
 import React from 'react';
 import { Options, TextInput } from '../../ds/react/FormElements';
 import { Card } from '../../ds/react/Card';
+import { PrimaryButton } from '../../ds/react/Buttons';
 
 export const Question = ({
   question,
@@ -10,13 +11,17 @@ export const Question = ({
   setQuestion: Function;
 }) => {
   const nameChange = (name: string) => {
-    setQuestion({ name: name, type: question.type });
+    setQuestion({ ...question, name });
   };
   const typeChange = (type: string) => {
     setQuestion({
-      name: question.name,
-      type: type
+      ...question,
+      type
     });
+  };
+
+  const setOptions = (options: string[]) => {
+    setQuestion({ ...question, options });
   };
   return (
     <Card>
@@ -28,15 +33,49 @@ export const Question = ({
           return value ? '' : 'Field required';
         }}
       />
-      <div>
-        <Options
-          selected={question.type}
-          name="Question type"
-          options={[QuestionType.Text, QuestionType.MultiSelect]}
-          onChange={typeChange}
-        />
-      </div>
+      <Options
+        selected={question.type}
+        name="Question type"
+        options={[QuestionType.Text, QuestionType.MultiSelect]}
+        onChange={typeChange}
+      />
+      {question.type === QuestionType.MultiSelect && (
+        <QuestionOptions setOptions={setOptions} options={question.options} />
+      )}
     </Card>
+  );
+};
+
+const QuestionOptions = ({
+  options,
+  setOptions
+}: {
+  options: string[];
+  setOptions: Function;
+}) => {
+  const setOption = (index: number) => {
+    return (option: string) => {
+      options[index] = option;
+      setOptions([...options]);
+    };
+  };
+
+  const addOption = () => {
+    setOptions([...options, 'Undefined options']);
+  };
+  return (
+    <div>
+      {options.map((option, index) => (
+        <TextInput
+          key={index}
+          label={`Option ${index + 1}`}
+          value={option}
+          onChange={setOption(index)}
+          required={true}
+        />
+      ))}
+      <PrimaryButton onClick={addOption}>Add option</PrimaryButton>
+    </div>
   );
 };
 
@@ -44,6 +83,7 @@ export interface Question {
   name: string;
   type: QuestionType;
   required?: boolean;
+  options: string[];
 }
 
 export type QuestionType = 'text' | 'multi';

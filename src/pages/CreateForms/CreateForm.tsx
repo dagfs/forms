@@ -9,7 +9,7 @@ const CreateForm = () => {
   const addQuestion = () => {
     setQuestions([
       ...questions,
-      { name: 'Untitled Question', type: QuestionType.Text }
+      { name: 'Untitled Question', type: QuestionType.Text, options: [] }
     ]);
   };
   return (

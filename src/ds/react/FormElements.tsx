@@ -8,6 +8,7 @@ interface InputElementProps {
   onChange: Function;
   validation?: (value: string | number) => string;
   value: string | number;
+  required: boolean;
 }
 
 const InputElement = ({
@@ -15,14 +16,16 @@ const InputElement = ({
   label,
   onChange,
   value,
-  validation
+  validation,
+  required
 }: InputElementProps): ReactElement => {
   const [showInput, setShowInput] = useState(false);
   const [error, setError] = useState('');
 
   const change = (event: any) => {
     const value = event.target.value;
-    const err = validation ? validation(value) : '';
+    let err = required && value === '' ? 'Filed is required' : '';
+    err = validation ? validation(value) : err;
     setError(err);
     onChange(value);
   };
@@ -37,7 +40,7 @@ const InputElement = ({
             onChange={change}
             value={value}
             onBlur={() => {
-              setShowInput(false);
+              !error && setShowInput(false);
             }}
           />
         ) : (
@@ -60,14 +63,15 @@ type TextInputProps = {
   label: string;
   onChange: Function;
   value: string | number;
-
+  required: boolean;
   validation?: (value: string | number) => string;
 };
 export const TextInput = ({
   label,
   onChange,
   value,
-  validation
+  validation,
+  required
 }: TextInputProps) => {
   return (
     <InputElement
@@ -76,6 +80,7 @@ export const TextInput = ({
       label={label}
       value={value}
       validation={validation}
+      required={required}
     ></InputElement>
   );
 };
