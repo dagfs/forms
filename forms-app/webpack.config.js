@@ -9,7 +9,7 @@ module.exports = {
   watch: true,
   devServer: {
     contentBase: "./dist",
-    open: true,
+    // open: true,
     compress: true,
     port: 9000
   },

@@ -1,3 +1,3 @@
-const config = require("./ds/classy-ui.config");
+const config = require("./src/ds/classy-ui.config");
 
 module.exports = config;
